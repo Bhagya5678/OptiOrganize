@@ -1,8 +1,13 @@
 import React, {useState} from 'react';
 import {ScrollArea} from "@/components/ui/scroll-area";
 import {Button} from "@/components/ui/button";
+import {useGlobalContext} from "@/Context";
+import {useNavigate} from 'react-router-dom';
 
 export default function ScrollChoose({data}) {
+    const navigate = useNavigate();
+    const {selectProduct, setSelectProduct} = useGlobalContext();
+
     const categoryColors = {
         'Noodles': 'bg-yellow-600',
         'Cold Drinks': 'bg-blue-300',
@@ -10,7 +15,8 @@ export default function ScrollChoose({data}) {
     };
 
     const handleContinue = () => {
-        
+        setSelectProduct(selectedItems);
+        navigate('/shelf-layout');
     };
 
     const [selectedItems, setSelectedItems] = useState([]);
